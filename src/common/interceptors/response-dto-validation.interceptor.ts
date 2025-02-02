@@ -6,10 +6,6 @@ import { mergeMap } from "rxjs/operators";
 @Injectable()
 export class ResponseDtoValidationInterceptor implements NestInterceptor  {
     intercept<T>(context: ExecutionContext, next: CallHandler<T>): Observable<T> {
-        if(process.env.ENV === process.env.PRODUCTION) {
-            return next.handle();
-        }
-
         return next.handle().pipe(
             mergeMap((data) => from(this.validate(data)))
         );
