@@ -132,3 +132,4 @@ dist
 **/*.iml
 **/*.DS_Store
 **/dist
+**/.env
