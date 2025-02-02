@@ -5,14 +5,17 @@ import {
     Get,
     Param,
     UseGuards,
+    UseInterceptors,
     NotFoundException,
     InternalServerErrorException,
 } from "@nestjs/common";
 import { AccessTokenGuard } from "../common/guards/access-token.guard";
+import { ResponseDtoValidationInterceptor } from "../common/interceptors/response-dto-validation.interceptor";
 import { CurrentUser } from "../common/decorators/current-user.decorator";
 import { IUserService, USER_SERVICE } from "./interfaces/user-service.interface";
 import { User } from "../common/types/user.type";
 
+@UseInterceptors(ResponseDtoValidationInterceptor)
 @Controller("users")
 export class UserController {
     constructor(@Inject(USER_SERVICE) private readonly service: IUserService) {}
