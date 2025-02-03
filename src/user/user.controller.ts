@@ -5,7 +5,6 @@ import {
     Get,
     Param,
     UseGuards,
-    UseInterceptors,
     NotFoundException,
     InternalServerErrorException,
 } from "@nestjs/common";
