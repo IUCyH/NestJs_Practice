@@ -1,5 +1,6 @@
 import { INestApplication } from "@nestjs/common";
 import { MockAppModule } from "../mock-app.module";
+import { AppModule } from "../../src/app.module";
 import { LoggingInterceptor } from "../../src/common/interceptors/logging.interceptor";
 import { WINSTON_MODULE_NEST_PROVIDER } from "nest-winston";
 import { AuthSharedModule } from "../../src/shared/auth-shared.module";
@@ -13,7 +14,7 @@ describe("UserController", () => {
         const module = await Test.createTestingModule({
             imports: [
                 AuthSharedModule,
-                MockAppModule
+                AppModule
             ]
         }).compile();
 
@@ -27,9 +28,9 @@ describe("UserController", () => {
 
     it("should be logged", async () => {
         const tasks = [
-            request.default(app.getHttpServer()).get("/users/12"),
-            request.default(app.getHttpServer()).get("/users/14"),
-            request.default(app.getHttpServer()).get("/users/15")
+            request.default(app.getHttpServer()).get("/users/1"),
+            request.default(app.getHttpServer()).get("/users/2"),
+            request.default(app.getHttpServer()).get("/users/3")
         ];
         const [res] = await Promise.all(
             tasks

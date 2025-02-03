@@ -6,8 +6,8 @@ export const AppDataSource: TypeOrmModuleOptions = {
     host: "localhost",
     port: 3306,
     username: "root",
-    password: "",
-    database: "",
+    password: "bere6363",
+    database: "script",
     synchronize: false,
     logging: true,
     namingStrategy: new SnakeNamingStrategy(),
@@ -15,7 +15,7 @@ export const AppDataSource: TypeOrmModuleOptions = {
         timezone: "Z",
         dateStrings: true
     },
-    entities: [__dirname + "/../entities/**/*.js"],
+    entities: [__dirname + "/../**/*.{js,ts}"],
     subscribers: [],
     migrations: []
 };
