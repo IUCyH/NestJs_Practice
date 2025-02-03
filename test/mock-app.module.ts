@@ -1,12 +1,8 @@
 import { Module } from "@nestjs/common";
-import { TypeOrmModule } from "@nestjs/typeorm";
 import { WinstonModule } from "nest-winston";
-import { transports, format } from "winston";
+import { format, transports } from "winston";
 import winstonDaily from "winston-daily-rotate-file";
-import { AppDataSource } from "./configs/orm.config";
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
-import { UserModule } from "./user/user.module";
+import { MockUserModule } from "./user/mocks/user.module";
 
 const logDir = __dirname + "/../logs";
 const logFormat = format.printf(({ level, message, label, timestamp }) => {
@@ -15,7 +11,6 @@ const logFormat = format.printf(({ level, message, label, timestamp }) => {
 
 @Module({
     imports: [
-        TypeOrmModule.forRoot(AppDataSource),
         WinstonModule.forRoot({
             format: format.combine(
                 format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
@@ -47,9 +42,7 @@ const logFormat = format.printf(({ level, message, label, timestamp }) => {
                 })
             ]
         }),
-        UserModule
+        MockUserModule
     ],
-    controllers: [AppController],
-    providers: [AppService],
 })
-export class AppModule {}
+export class MockAppModule {}
