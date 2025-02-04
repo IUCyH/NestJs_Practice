@@ -1,7 +1,7 @@
 import { format, transports } from "winston";
 import winstonDaily from "winston-daily-rotate-file";
 
-const logDir = __dirname + "/../logs";
+const logDir = __dirname + "/../../logs";
 const logFormat = format.printf(({ level, message, label, timestamp }) => {
     return `${timestamp} [${label}] ${level.toUpperCase()}: ${message}`;
 });
