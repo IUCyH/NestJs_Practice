@@ -14,7 +14,7 @@ describe("UserController", () => {
         const module = await Test.createTestingModule({
             imports: [
                 AuthSharedModule,
-                AppModule
+                MockAppModule
             ]
         }).compile();
 
